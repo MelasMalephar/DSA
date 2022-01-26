@@ -1,13 +1,27 @@
 class Solution {
 public:
     int numSquares(int n) {
-        static vector<int> dp {0};
-        int m = dp.size();
-        dp.resize(max(m, n+1), INT_MAX);
-        for (int i=1, i2; (i2 = i*i)<=n; ++i)
-            for (int j=max(m, i2); j<=n; ++j)
-                if (dp[j] > dp[j-i2] + 1)
-                    dp[j] = dp[j-i2] + 1;
+        int dp[10010];
+        dp[0] = 0;
+        dp[1] = 1;
+        int maxSq;
+        
+        for(int i=2;i<=n;i++){
+            for(int j=100;j>0;j--){
+                if(i>=j*j){
+                    maxSq = j;
+                    break;
+                }
+            }
+            dp[i] = INT_MAX;
+            while(maxSq>=1){
+                dp[i] = min(dp[i],dp[i-maxSq*maxSq]+1);
+                maxSq--;
+            }
+            
+            // cout<<dp[i]<<" "<<i<<endl;
+        }
+        
         return dp[n];
     }
 };
