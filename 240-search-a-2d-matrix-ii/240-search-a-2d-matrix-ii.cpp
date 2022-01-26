@@ -1,14 +1,29 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& v, int t) {
-        int row=v.size()-1,col=v[0].size()-1;
-        bool ans=false;
-        for(int i=0;i<=row;i++){
-            if(v[i][col]>=t){
-                if(v[i][0]<=t)
-                    ans |= binary_search(v[i].begin(),v[i].end(),t);
-            }
-        }
-        return ans;
+        int row=v.size(),col=v[0].size();
+         int s=0;
+    int e=col-1;
+
+    while (s<row && e>=0)
+    {
+       int element=v[s][e];
+
+       if (t==element)
+       {
+           return 1;
+       }
+       if (t>element)
+       {
+           s++; //rowindex++
+       }
+       else
+       {
+           e--; // colindex--
+       }
+       
+       
+    }
+    return 0;
     }
 };
