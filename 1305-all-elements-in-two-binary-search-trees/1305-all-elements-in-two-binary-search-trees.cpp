@@ -16,8 +16,7 @@ public:
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
         mkset(root1);
         mkset(root2);
-        vector<int> v;
-        v.assign(s.begin(),s.end());
+        vector<int> v(s.begin(),s.end());
         return v;
     }
     void mkset(TreeNode* p){
