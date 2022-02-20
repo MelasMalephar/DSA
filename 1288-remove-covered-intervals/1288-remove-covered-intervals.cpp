@@ -4,7 +4,7 @@ public:
         if(v.size()==1)
             return 1;
         int ans=0;
-        sort(v.begin(),v.end(),[](vector<int> t,vector<int> u){
+        sort(v.begin(),v.end(),[](vector<int>& t,vector<int>& u){
                 if(t[0]==u[0])return t[1]>u[1];
                 else  return t[0]<u[0];});
         for(int i=v.size()-1;~i;i--){
