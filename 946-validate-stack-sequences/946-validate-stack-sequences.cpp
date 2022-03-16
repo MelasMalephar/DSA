@@ -4,7 +4,7 @@ public:
         stack<int> s;
         s.push(-1);
         int i=0,cnt=0;
-        for(auto k:popped){
+        for(auto && k:popped){
             while(s.top()!=k && i<pushed.size()){
                 s.push(pushed[i++]);        
             }
