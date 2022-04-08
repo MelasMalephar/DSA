@@ -1,24 +1,24 @@
 class KthLargest {
+    priority_queue<int, std::vector<int>, std::greater<int>> q;
+    int ksize;
 public:
-    multiset<int> ms;
-    int a;
     KthLargest(int k, vector<int>& nums) {
-        a=k;
-        for(auto& c:nums){
-            ms.insert(c);
+        ksize = k;
+        for(auto &x: nums) {
+            if(q.size() < ksize) q.push(x);
+            else if(x > q.top()){
+                q.pop();
+                q.push(x);
+            } 
         }
+        
     }
     
     int add(int val) {
-        ms.insert(val);
-        auto it=ms.end();
-        std::advance(it,-a);
-        return *it;
+        
+        if(q.size() < ksize) q.push(val);
+        else if(val > q.top()) { q.pop(); q.push(val);}
+        auto v = q.top();
+        return v;
     }
 };
-
-/**
- * Your KthLargest object will be instantiated and called as such:
- * KthLargest* obj = new KthLargest(k, nums);
- * int param_1 = obj->add(val);
- */
