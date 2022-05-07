@@ -9,6 +9,5 @@ public:
         // nums.erase(it,nums.end());
         nums.insert(nums.begin(),v.begin(),v.end());
         nums.resize(n);
-        
     }
 };
