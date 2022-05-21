@@ -1,8 +1,7 @@
 class Solution {
 public:
-     int coinChange(vector<int>& coins, int n) {
-        // creating the base dp array, with first value set to 0
-        int dp[++n];
+    int coinChange(vector<int>& coins, int n) {
+         int dp[++n];
         dp[0] = 0;
         // more convenient to have the coins sorted
         sort(begin(coins), end(coins));
@@ -17,5 +16,5 @@ public:
             }
         }
         return dp[--n] == INT_MAX ? -1 : dp[n];
-     }
+    }
 };
