@@ -1,33 +1,31 @@
 class Solution {
 public:
-    bool canFinish(int n, vector<vector<int>>& pre) {
-        if(n==7){
-            vector<vector<int>> d={{1,0},{0,3},{0,2},{3,2},{2,5},{4,5},{5,6},{2,4}};
-            if(pre==d) return true;
-        }
-        vector<int> v[n];
-        vector<bool> s(n,true);
-
-        for(auto p:pre){
-            v[p[0]].push_back(p[1]);
-            if(p[0]==p[1]) return false;
-            s[p[0]]=false;
-        }
-        for(int i=0;i<n;i++){
-            queue<int> q;
-            q.push(i);
-            unordered_set<int> visited;
-            while(!q.empty() ){
-                int a=q.front();
-                q.pop();
-                if(s[a]==true) continue;
-                if(visited.find(a)!=visited.end()) return false;
-                visited.insert(a);
-                cout<<"i == "<<a<<" size = "<<v[a].size()<<endl;
-                for(int k=0;k<v[a].size();k++){ cout<<v[a][k]<<" "; q.push(v[a][k]);}
-                cout<<endl;
+    
+    bool isCyclic(vector<vector<int>> &adj, vector<int> &visited,int curr){
+        if(visited[curr]==2)return true;
+        
+        visited[curr]=2;
+        for(int i=0;i<adj[curr].size();i++){
+            if(visited[adj[curr][i]]!=1){
+                if(isCyclic(adj,visited,adj[curr][i]))
+                    return true;
             }
-            s[i]=true;
+        }
+        visited[curr]=1;
+        return false;
+    }
+    
+    bool canFinish(int n /*numCourses*/, vector<vector<int>>& p /*prerequisites*/) {
+        vector<vector<int>> adj(n);
+        for(int i=0;i<p.size();i++){
+            adj[p[i][0]].push_back(p[i][1]);
+        }
+        vector<int> visited(n,0);
+        for(int i=0;i<n;i++){
+            if(visited[i]==0){
+                if(isCyclic(adj,visited,i))
+                    return false;
+            }
         }
         return true;
     }
