@@ -1,8 +1,9 @@
 class Solution {
-public: int arr[501][501];
+public: 
     int minDistance(string s, string t) {
         // memset(arr,0,sizeof(arr));
         int n=s.size(),m=t.size();
+        int arr[n+1][m+1];
         for(int i=0;i<n+1;i++){
             for(int j=0;j<m+1;j++){
                 if(!i || !j) arr[i][j]=0;
