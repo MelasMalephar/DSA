@@ -10,11 +10,11 @@
  * };
  */
 class Solution {
-public:int arr[1001];
+public:
+    unordered_map<int,int>;
     int calc(TreeNode* q){
         if(q==nullptr)return 0;
-        if(arr[q->val]>0) return arr[q->val];
-        return arr[q->val]=1+max(calc(q->right),calc(q->left));
+        else return 1+max(calc(q->right),calc(q->left));
     }
     TreeNode* dfs(TreeNode* p){
         int a=calc(p->left);
@@ -24,7 +24,6 @@ public:int arr[1001];
         else return dfs(p->left);
     }
     TreeNode* lcaDeepestLeaves(TreeNode* root) {
-        memset(arr,0,sizeof(arr));
         return dfs(root);
     }
 };
