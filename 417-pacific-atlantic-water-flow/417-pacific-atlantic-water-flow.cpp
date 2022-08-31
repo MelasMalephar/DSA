@@ -8,9 +8,6 @@ public:
     }
 
     void dfs(vector<vector<int>>& matrix, vector<vector<bool>>& visited, int i, int j) {
-       int m = matrix.size();
-       int n = matrix[0].size();
-
        visited[i][j] = true;
        for (int k =1 ; k<offset.size(); k++){
            int row = i + offset[k], col = j + offset[k-1] ;
