@@ -21,10 +21,10 @@ public:
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node* root) {
-        if(root==nullptr) return {};
+        vector<vector<int>> ans;
+        if(root==nullptr) return ans;
         queue<Node *> q;
         q.push(root);
-        vector<vector<int>> ans;
         while(!q.empty()){
             int n=q.size();
             vector<int> temp;
@@ -32,10 +32,8 @@ public:
                 auto a=q.front();
                 q.pop();
                 temp.push_back(a->val);
-                if(a->children.size()!=0){
-                    for(auto c:a->children){
-                        q.push(c);
-                    }
+                for(auto c:a->children){
+                    q.push(c);
                 }
             }
             ans.push_back(temp);
