@@ -4,10 +4,10 @@ public:
         vector<int> ans;
         if(v.size()%2 != 0) return ans;
         map<int, int> mp;
-        for(auto num : v){
+        for(auto &num : v){
             mp[num]++;
         }
-        for(auto [k,l]:mp){
+        for(auto &[k,l]:mp){
             if(l==0) continue;
             if(k==0){
                 if(l%2!=0) return ans;
