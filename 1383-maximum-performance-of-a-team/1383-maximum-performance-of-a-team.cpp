@@ -6,12 +6,12 @@ public:
             ess[i] = {e[i], s[i]};
         sort(rbegin(ess), rend(ess));
         long sumS = 0, res = 0;
-        priority_queue <int, vector<int>, greater<int>> pq; //min heap
+        priority_queue <int> pq; //min heap
         for(auto& [e, s]: ess){
-            pq.emplace(s);
+            pq.emplace(-s);
             sumS += s;
             if (pq.size() > k) {
-                sumS -= pq.top();
+                sumS += pq.top();
                 pq.pop();
             }
             res = max(res, sumS * e);
