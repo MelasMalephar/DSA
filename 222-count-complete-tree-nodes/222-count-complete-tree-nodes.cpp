@@ -17,7 +17,7 @@ public:
         TreeNode *l=root, *r=root;
         while(l) {hl++;l=l->left;}
         while(r) {hr++;r=r->right;}
-        if(hl==hr) return pow(2,hl)-1;
+        if(hl==hr) return (1<<hl)-1;
         return 1+countNodes(root->left)+countNodes(root->right); 
     }
 };
